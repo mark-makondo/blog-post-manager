@@ -1,0 +1,15 @@
+// initializations
+@import 'variables';
+@import 'init';
+@import 'functions';
+
+// components
+
+// blog components
+
+// pages
+@import '../pages/login-page/login-page';
+@import '../pages/dashboard/dashboard';
+
+// responsive
+@import 'global-responsive';
