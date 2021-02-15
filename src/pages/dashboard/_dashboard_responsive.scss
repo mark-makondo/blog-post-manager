@@ -1,0 +1,119 @@
+// responsive medium screen //768px
+@include media-md{
+    .dashboard{
+        &-top{
+            max-width: getMaxWidth(m);
+        }
+        &-cont{
+            max-width: getMaxWidth(m);
+    
+            &-content{
+                &__profile{
+                    &__image{
+                        max-width: 7.8125rem;
+                    }
+                    &__post-handler{
+                        button{
+                            width: 10rem;
+                        }
+                    }
+                    &__logo{
+                        width: 8.75rem;
+                    }
+    
+                }
+            }
+        }
+    }
+}
+
+// responsive large screen //1200px
+@include media-lg{
+    .dashboard{
+        &-top{
+            max-width: getMaxWidth(l);
+            margin-bottom: 1rem;
+        }
+        &-cont{
+            max-width: getMaxWidth(l);
+            margin: auto;
+            height: 40rem;
+            &-content{
+                @include setFlex(row, center, flex-start);
+                padding: 0;
+                &__profile{
+                    @include setFlex(column, center, center);
+                    width: 60%;
+                    margin: 0 auto;
+                    h2{
+                        margin-top: 1rem;
+                    }
+                    &__image{
+                        order: 4;
+                        max-width: 10rem;
+                        margin-top: 2rem;
+                    }
+                    &__post-handler{
+                        @include setFlex(column, space-evenly, center);
+                        margin-top: 3.3rem;
+                        button{
+                            width: 12rem;
+                            border-radius: 2rem;
+                            &:nth-of-type(1){
+                                background: getColors(active);
+                                margin-bottom: 1rem;
+                            }
+                        }
+                    }
+                    &__logo{
+                        width: 11.5625rem;
+                    }
+    
+                }
+                &__info{
+                    &__post-method{
+                        position: relative;
+                        border-radius: 0 1rem 0 0;
+                        right: -1px;
+                        top: -1px;
+                    }
+
+                    &__posts{
+                        height: 30rem;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+// responsive large screen //1900px
+@include media-xl{
+    .dashboard{
+        &-top{
+            max-width: getMaxWidth(xl);
+        }
+        &-cont{
+            max-width: getMaxWidth(xl);
+
+            &-content{
+                &__info{
+                    &__post-method{
+                        position: relative;
+                        border-radius: 0 1rem 0 0;
+                        right: -1px;
+                        top: -1px;
+                        padding-left: 5rem;
+                        padding-right: 5rem;
+                    }
+
+                    &__posts{
+                        height: 30rem;
+                        max-width: 41rem;
+                    }
+                }
+            }
+        }
+    }
+}

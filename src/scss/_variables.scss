@@ -28,21 +28,22 @@ $font-size-xl: (
 $max-width: (
     "s": 20rem,
     "m": 40rem,
-    "l": 50rem,
-    "xl": 95rem,
+    "l": 60rem,
+    "xl": 80rem,
+    "login-s": 15rem,
+    "login-m": 20rem,
+    "login-l": 25rem,
+    "login-xl": 30rem,
 );
 
 // colors
 $colors: (
-    "primary-solid":#07192D,
-    "primary-light":#016685,
-    "primary-semi-solid": #091C31,
-    "primary-semi-light": #0D335D,
-    "secondary-solid":#7b7b7b,
-    "secondary-light":#c3c3c3,
-    "white": #FFFFFF,
-    "white-pink": #FEF8F8
+    "primary" : #F7F7F7,
+    "secondary" : #222B34,
+    "active" : #165063,
+    "active-light": #1C6881,
+    "not-active": #222B34
 );
 
 // box shadow
-$little-shadow: 0px 3px 8px #00000025;
+$little-shadow: 0 0 6px #00000020;

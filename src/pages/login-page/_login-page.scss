@@ -1,19 +1,57 @@
 .login-page{
     width: 100vw;
     height: 100vh;
+    background: getColors(primary);
     &-cont{
         position: relative;
         width: 100%;
         height: 100%;
+        display: flex;
         img{
             position: absolute;
-            z-index: -1;
+            z-index: 0;
             top: 0;
             right: 0;
             left: 0;
             bottom: 0;
             margin: auto;
-            mix-blend-mode: luminosity;
+            mix-blend-mode: luminosity; 
+            width: 15.625rem;
+        }
+        &__info{
+            @include setFlex(row, space-evenly,center);
+            z-index: 1;
+            margin: auto;
+            max-width: getMaxWidth(login-s);
+            padding: 3rem 2rem;
+            border-radius: 2rem;
+            box-shadow: $little-shadow;
+            background: #ffffffcf;
+            width: 100%;
+            button{
+                padding: .8rem .5rem;
+                outline: none;
+                border:  none;
+                border-radius: 1rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                transition: 100ms all linear;
+                
+                &:nth-of-type(1){
+                    background: getColors(active);
+                    color: getColors(primary);
+                }
+                &:nth-of-type(2){
+                    background: getColors(not-active);
+                    color: getColors(primary);
+                }
+
+                @media (hover:hover) {
+                    &:hover{
+                        transform: scale(1.1);
+                    }
+                }
+            }
         }
     }
 }

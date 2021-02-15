@@ -1,4 +1,153 @@
 .dashboard{
+    position: relative;
+    width: 100%;
+    background: getColors(not-active);
+    min-height: 100vh;
+    padding: 1.5rem;
+    &-bg{
+        position: fixed;
+        z-index: 0;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        mix-blend-mode: luminosity;
+        
+    }
+    &-top{
+        text-align: right;
+        color: getColors(primary);
+        max-width: getMaxWidth(s);
+        margin: 0 auto;
+    }
+    &-cont{
+        position: relative;
+        background: #ffffffcf;
+        border-radius: 1rem;
+        max-width: getMaxWidth(s);
+        margin: 1rem auto;
 
+        &-content{
+            @include setFlex(column, center, center);
+            width: 100%;
+            padding: 2rem 0rem;
+            &__profile{
+                @include setFlex(column, center, center);
+                width: 100%;
+                margin-bottom: 1rem;
+                padding: 0 1rem;
+                h2{
+                    font-family: $sub;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    color: getColors(active);
+                    font-weight: unset;
+                }
+                &__image{
+                    max-width: 5rem;
+                    margin: .5rem 0;
+                    img{
+                        border:1px solid;
+                        border-color: getColors(not-active);
+                        border-radius: 50%;
+                        max-width: 100%;
+                        height: auto;
+                        mix-blend-mode: luminosity;
+                    }
+                }
+                &__post-handler{
+                    @include setFlex(row, space-evenly, center);
+                    width: 100%;
+                    button{
+                        width: 8rem;
+                        padding: .5rem 1rem;
+                        text-transform: capitalize;
+                        border: none;
+                        border-radius: 1rem;
+                        background: getColors(not-active);
+                        color: getColors(primary);
+                        &:nth-of-type(1){
+                            background: getColors(active);
+                        }
+                    }
+                }
+                &__logo{
+                    margin-top: 3rem;
+                    width: 7.1875rem;
+                    svg{
+                        max-width: 100%;
+                    }
+                }
+
+            }
+
+            &__info{
+                position: relative;
+                @include setFlex(column, center, center);
+                width: 100%;
+                &__post-method{
+                    @include setFlex(row, flex-end, center);
+                    width: 100%;
+                    background: getColors(active);
+                    padding: .8rem 1rem;
+                    select,button{
+                        border: none;
+                        background: getColors(active-light);
+                        border-radius: 1rem;
+                        padding: .4rem 1rem;
+                        color: getColors(primary);
+                        outline: none;
+                        letter-spacing: .5px;
+                    }
+                    select{
+                        margin-right: auto;
+                        padding-right: 1.5rem;
+                        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9IiNiYmIiPjxwYXRoIGQ9Ik02IDlsNiA2IDYtNiIvPjwvc3ZnPg==);
+                        background-repeat: no-repeat;
+                        background-position-x: 100%;
+                        background-position-y: 50%;
+
+                        -webkit-appearance: none;
+                        -moz-appearance: none;
+                        -ms-appearance: none;
+                        -o-appearance: none;
+                        appearance: none;
+                    }
+                    button{
+                        text-transform: capitalize;
+                        &:nth-of-type(1){
+                            margin-right: 1rem;
+                        }
+                    }
+                }
+                &__posts{
+                    position: relative;
+                    @include setFlex(column, flex-start, center);
+                    overflow-y: scroll;
+                    padding: 1rem;
+                    width: 100%;
+                    height: 25rem;
+                    &-box{
+                        @include setFlex(column, flex-start, flex-start);
+                        padding: .5rem;
+                        color: getColors(primary);
+                        background: getColors(not-active);
+                        border-radius: .5rem;
+                        width: 100%;
+                        margin-bottom: 1.5rem;
+                        letter-spacing: .5px;
+                        &:nth-of-type(1){
+                            margin-top: 2rem;
+                        }
+                        &.active{
+                            background: getColors(active);
+                        }
+                    }
+
+                }
+            }
+        }
+    }
 }
 @import './dashboard_responsive';

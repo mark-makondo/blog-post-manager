@@ -1,0 +1,48 @@
+// responsive medium screen //768px
+@include media-md{
+    .login-page{
+        img{
+            width: 20.625rem;
+        }
+        &-cont{
+            &__info{
+                max-width: getMaxWidth(login-m);
+            }
+        }
+    }
+}
+
+// responsive large screen //1200px
+@include media-lg{
+    .login-page{
+        &-cont{
+            img{
+                width: 20.625rem;
+            }
+            &__info{
+                max-width: getMaxWidth(login-l);
+                button{
+                    padding: .8rem 1rem;
+                }
+            }
+        }
+    }
+}
+
+// responsive large screen //1900px
+@include media-xl{
+    .login-page{
+        &-cont{
+            img{
+                width: 28.75rem;
+            }
+            &__info{
+                max-width: getMaxWidth(login-xl);
+                padding: 4rem 2rem;
+                button{
+                    letter-spacing: 1px;
+                }
+            }
+        }
+    }
+}
