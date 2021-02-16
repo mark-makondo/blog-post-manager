@@ -1,11 +1,17 @@
 import React from 'react'
 
-// component ui
+// component 
 import PostHolderUI from './PostHolder.js';
 
-const PostHolderContainer = () => {
+const PostHolderContainer = ({ id, title, content, datePosted }) => {
+   
     return (
-        <PostHolderUI/>
+        <PostHolderUI
+            id = {id}
+            title = {title}
+            content = {content}
+            datePosted = {datePosted}
+        />
     )
 }
 

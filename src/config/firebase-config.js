@@ -1,6 +1,6 @@
 import firebase from 'firebase/app';
-import 'firebase/firestore'; // database
-import 'firebase/analytics'; // database
+import 'firebase/firestore'; 
+import 'firebase/auth'; 
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -13,13 +13,14 @@ const firebaseConfig = {
     appId: "1:810706913569:web:c64005872086fc5b701660",
     measurementId: "G-1XE5NBVTMS"
 };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
 
-// initialize Firestore
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+ }else {
+    firebase.app(); 
+ } //if initialize use otherwise
+
+// Initialize firestore
 const database = firebase.firestore();
-// const analytics = firebase.analytics();
-const timestamp = firebase.firestore.FieldValue.serverTimeStamp;
 
-export { database, timestamp};
+export default database;
