@@ -1,0 +1,20 @@
+// responsive medium screen //768px
+@include media-md{
+}
+
+// responsive large screen //1200px
+@include media-lg{
+    .post-method{
+        border-radius: 0 1rem 0 0;
+        right: -1px;
+        top: -1px;
+    }
+}
+
+// responsive large screen //1900px
+@include media-xl{
+    .post-method{
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+}

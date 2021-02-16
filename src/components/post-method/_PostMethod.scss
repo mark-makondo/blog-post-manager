@@ -1,0 +1,37 @@
+.post-method{
+    position: relative;
+    @include setFlex(row, flex-end, center);
+    width: 100%;
+    background: getColors(active);
+    padding: .8rem 1rem;
+    select,button{
+        border: none;
+        background: getColors(active-light);
+        padding: .4rem 1rem;
+        color: getColors(primary);
+        outline: none;
+        letter-spacing: .5px;
+        border-radius: 2rem;
+    }
+    select{
+        margin-right: auto;
+        padding-right: 1.5rem;
+        background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9IiNiYmIiPjxwYXRoIGQ9Ik02IDlsNiA2IDYtNiIvPjwvc3ZnPg==);
+        background-repeat: no-repeat;
+        background-position-x: 100%;
+        background-position-y: 50%;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+    }
+    button{
+        text-transform: capitalize;
+        &:nth-of-type(1){
+            margin-right: 1rem;
+        }
+    }
+}
+@import './PostMethodResponsive';

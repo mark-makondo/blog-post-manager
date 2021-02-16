@@ -1,0 +1,55 @@
+// responsive medium screen //768px
+@include media-md{
+    .dashboard{
+        &-top{
+            max-width: getMaxWidth(m);
+        }
+        &-cont{
+            max-width: getMaxWidth(m);
+        }
+    }
+}
+
+// responsive large screen //1200px
+@include media-lg{
+    .dashboard{
+        &-top{
+            max-width: getMaxWidth(l);
+            margin-bottom: 1rem;
+        }
+        &-cont{
+            max-width: getMaxWidth(l);
+            margin: auto;
+            height: 50rem;
+            &-content{
+                @include setFlex(row, center, flex-start);
+                padding: 0;
+                &__info{
+                    &__posts{
+                        height: 40rem;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+// responsive large screen //1900px
+@include media-xl{
+    .dashboard{
+        &-top{
+            max-width: getMaxWidth(xl);
+        }
+        &-cont{
+            max-width: getMaxWidth(xl);
+            &-content{
+                &__info{
+                    &__posts{
+                        max-width: 41rem;
+                    }
+                }
+            }
+        }
+    }
+}

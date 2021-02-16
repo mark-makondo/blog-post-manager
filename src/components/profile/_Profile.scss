@@ -1,0 +1,50 @@
+.profile{
+    @include setFlex(column, center, center);
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    h2{
+        font-family: $sub;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: getColors(active);
+        font-weight: unset;
+    }
+    &__image{
+        max-width: 5rem;
+        margin: .5rem 0;
+        img{
+            border:1px solid;
+            border-color: getColors(not-active);
+            border-radius: 50%;
+            max-width: 100%;
+            height: auto;
+            mix-blend-mode: luminosity;
+        }
+    }
+    &__post-handler{
+        @include setFlex(row, space-evenly, center);
+        width: 100%;
+        button{
+            width: 8rem;
+            padding: .5rem 1rem;
+            text-transform: capitalize;
+            border: none;
+            border-radius: 1rem;
+            background: getColors(not-active);
+            color: getColors(primary);
+            &:nth-of-type(1){
+                background: getColors(active);
+            }
+        }
+    }
+    &__logo{
+        margin-top: 3rem;
+        width: 7.1875rem;
+        svg{
+            max-width: 100%;
+        }
+    }
+
+}
+@import './ProfileResponsive';

@@ -1,15 +1,17 @@
 // initializations
-@import 'variables';
-@import 'init';
-@import 'functions';
+@import 'Variables';
+@import 'Init';
+@import 'Functions';
 
 // components
-
-// blog components
+@import '../components/profile/Profile';
+@import '../components/post-method/PostMethod';
+@import '../components/posts-holder/PostHolder';
+@import '../components/admin-login/AdminLogin';
 
 // pages
-@import '../pages/login-page/login-page';
-@import '../pages/dashboard/dashboard';
+@import '../pages/login-page/LoginPage';
+@import '../pages/dashboard/Dashboard';
 
 // responsive
-@import 'global-responsive';
+@import 'GlobalResponsive';

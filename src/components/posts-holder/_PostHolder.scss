@@ -1,0 +1,18 @@
+.post-holder{
+    @include setFlex(column, flex-start, flex-start);
+    padding: .5rem;
+    color: getColors(primary);
+    background: getColors(not-active);
+    border-radius: .5rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    letter-spacing: .5px;
+
+    &:nth-of-type(1){
+        margin-top: 2rem;
+    }
+    &.active{
+        background: getColors(active);
+    }
+}
+@import './PostHolderResponsive';
