@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
 //firebase
-import Database from '../config/firebase-config.js';
+import {database} from '../config/firebase-config.js';
 
 const useShowDataFirestore = () => {
-    const [showPosts, setShowPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     const showPostsHandler = () => {
-        Database.collection('posts')
+        database.collection('posts')
             .orderBy('datePosted', 'desc')
             .onSnapshot((snap) => {
                 let documents = [];
@@ -16,7 +16,7 @@ const useShowDataFirestore = () => {
                     documents.push({...doc.data(), id: doc.id});
                 });
 
-                setShowPosts(documents);
+                setPosts(documents);
             })
     }
 
@@ -25,7 +25,7 @@ const useShowDataFirestore = () => {
 
     }, [])
 
-    return [showPosts];
+    return [posts];
 }
 
 export {useShowDataFirestore};

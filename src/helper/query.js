@@ -1,7 +1,8 @@
 const query = {
     //modal email
-    modalEmail: () => document.querySelector('.modal-new-post'),
-    modalEmailFormContainer: () => document.querySelector('.form-container')
+    modalNewPost: () => document.querySelector('.modal-new-post'),
+    //modal notif
+    modalNotification: () => document.querySelector('.modal-notification')
 }
 
 export default query;

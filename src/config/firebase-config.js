@@ -22,5 +22,6 @@ if (!firebase.apps.length) {
 
 // Initialize firestore
 const database = firebase.firestore();
+const auth = firebase.auth();
 
-export default database;
+export {database, auth}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 //firebase
-import Database from '../config/firebase-config.js';
+import {database} from '../config/firebase-config.js';
 
 const useAddDataFirestore = () => {
     const [newPost, setNewPost] = useState({});
@@ -9,7 +9,7 @@ const useAddDataFirestore = () => {
 
     const addPostHandler = async () => {
         try{
-            await Database.collection('posts').add({
+            await database.collection('posts').add({
                 ...newPost,
                 authorId: 1234,
                 datePosted: new Date()

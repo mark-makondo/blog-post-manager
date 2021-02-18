@@ -35,16 +35,16 @@ const ModalNewPostContainer = ({ isActive, setIsActive }) => {
 
     const isModalActive = (isActive) => {
 
-        let modalEmail =  Query.modalEmail();
+        let modalNewPost =  Query.modalNewPost();
 
         if(isActive){
-            modalEmail.classList.add('active');
+            modalNewPost.classList.add('active');
         }else{
-            modalEmail.classList.remove('active');
+            modalNewPost.classList.remove('active');
         }
 
-        modalEmail.addEventListener('click', (e) => {
-            if(e.target === modalEmail){
+        modalNewPost.addEventListener('click', (e) => {
+            if(e.target === modalNewPost){
                 setIsActive(false);
             }
         })

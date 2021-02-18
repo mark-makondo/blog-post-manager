@@ -10,7 +10,7 @@ import UserContext from '../../context/UserContext.js';
 //component
 import ModalNewPostContainer from '../modal-new-post/ModalNewPostContainer.js';
 
-const Profile = ({newPostClickHandler, isActive, setIsActive}) => {
+const Profile = ({newPostClickHandler, isActive, setIsActive, showPostClickHandler}) => {
     return (
         <UserContext.Consumer>
             { isDisabled => (
@@ -21,7 +21,7 @@ const Profile = ({newPostClickHandler, isActive, setIsActive}) => {
                     </div>
                     <div className="profile__post-handler">
                         <button className="normal-1" disabled={isDisabled} onClick ={e => newPostClickHandler(e)}>new post</button>
-                        <button className="normal-1">show posts</button>
+                        <button className="normal-1" onClick = {e => showPostClickHandler(e)}>show posts</button>
                     </div>
                     <div className="profile__logo">
                         <Logo/>
