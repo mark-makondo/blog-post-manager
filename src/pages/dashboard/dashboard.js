@@ -1,5 +1,8 @@
 import React from 'react';
 
+//context
+import UserContext from '../../context/UserContext.js';
+
 //assets
 import BackgroundImage from '../../assets/img/hero-image.png';
 
@@ -9,47 +12,72 @@ import PostMethodContainer from '../../components/post-method/PostMethodContaine
 import PostHolderContainer from '../../components/posts-holder/PostHolderContainer.js';
 import ModalNotificationContainer from '../../components/modal-notification/ModalNotificationContainer.js';
 
-const Dashboard = ({ posts, logoutClickHandler, showNotif, setShowNotif, showPost, setShowPost, uid }) => {
+const Dashboard = (props) => {
+
+    let posts = props.posts;
+    let logoutClickHandler = props.logoutClickHandler;
+    let showNotif = props.showNotif;
+    let setShowNotif = props.setShowNotif;
+    let showPost = props.showPost;
+    let setShowPost = props.setShowPost;
+    let uid = props.uid;
+    let isEditable = props.isEditable;
+    let setIsEditable = props.setIsEditable;
+    let isPostHolderActive = props.isPostHolderActive;
+    let setIsPostHolderActive = props.setIsPostHolderActive;
 
     if(!uid){
         return <span></span>
     }else{
         return(
-            <div className="dashboard">
-                <img className="dashboard-bg" src={BackgroundImage} alt="background profile"/>
-                <div className="dashboard-top">
-                    <span onClick={e => logoutClickHandler(e)} className="normal-1">Logout</span>
-                </div>
-                <div className="dashboard-cont">
-                    <div className="dashboard-cont-content">
-                        <ProfileContainer
-                            setShowPost = {setShowPost}
-                            showPost = {showPost}
-                        />
-    
-                        <div className="dashboard-cont-content__info">
-                            <PostMethodContainer/>
-                            <div className="dashboard-cont-content__info__posts">
-                                {showPost && (
-                                    posts.length > 0 ? posts.map(post => 
-                                        <PostHolderContainer 
-                                            key = {post.id}
-                                            id = {post.id}
-                                            title = {post.title}
-                                            content = {post.content}
-                                            datePosted = {new Date(post.datePosted.seconds * 1000 + post.datePosted.nanoseconds/1000000).toLocaleDateString()}
-                                        />
-                                    ): <p>Loading . . .</p>
-                                )}
+            <UserContext.Consumer>
+            {isGuest => (
+                <div className="dashboard">
+                    <img className="dashboard-bg" src={BackgroundImage} alt="background profile"/>
+                    <div className="dashboard-top">
+                        <span onClick={e => logoutClickHandler(e)} className="normal-1">Logout</span>
+                    </div>
+                    <div className="dashboard-cont">
+                        <div className="dashboard-cont-content">
+                            <ProfileContainer
+                                setShowPost = {setShowPost}
+                                showPost = {showPost}
+                            />
+        
+                            <div className="dashboard-cont-content__info">
+                                <PostMethodContainer
+                                    isPostHolderActive = {isPostHolderActive}
+                                    setIsEditable = {setIsEditable}
+                                />
+                                <div className="dashboard-cont-content__info__posts">
+                                    {showPost && (
+                                        posts.length > 0 ? posts.map(post => 
+                                            <PostHolderContainer 
+                                                key = {post.id}
+                                                id = {post.id}
+                                                title = {post.title}
+                                                content = {post.content}
+                                                datePosted = {new Date(post.datePosted.seconds * 1000 + post.datePosted.nanoseconds/1000000).toISOString()}
+                                                setIsPostHolderActive = {setIsPostHolderActive}
+                                                isEditable = {isEditable}
+                                            />
+                                        ): <p>Loading . . .</p>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
+                    {isGuest && (
+                        <ModalNotificationContainer
+                        isActive = {showNotif}
+                        setIsActive = {setShowNotif}
+                        />
+                    )}
+                   
                 </div>
-                <ModalNotificationContainer
-                    isActive = {showNotif}
-                    setIsActive = {setShowNotif}
-                />
-            </div>
+            )}
+            </UserContext.Consumer>
+           
         )
     }
     

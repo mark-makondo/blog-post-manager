@@ -9,26 +9,30 @@ import Query from '../../helper/Query.js';
 
 const ModalNotificationContainer = ({ isActive, setIsActive }) => {
 
-    const isModalActive = (isActive) => {
-
+    const isModalActive = (target) => {
         let modalEmail =  Query.modalNotification();
 
-        if(isActive){
-            modalEmail.classList.add('active');
-        }else{
-            modalEmail.classList.remove('active');
-        }
-
-        modalEmail.addEventListener('click', (e) => {
-            if(e.target === modalEmail){
-                setIsActive(false);
+        if(modalEmail){
+            if(target){
+                modalEmail.classList.add('active');
+            }else{
+                modalEmail.classList.remove('active');
             }
-        })
-
+    
+            modalEmail.addEventListener('click', (e) => {
+                if(e.target === modalEmail){
+                    setIsActive(false);
+                }
+            })
+        }
     }
 
     useEffect(() => {
         isModalActive(isActive);
+
+        return() => {
+            isModalActive() && isModalActive()
+        }
 
     }, [isActive])
     

@@ -16,7 +16,13 @@ const DashboardContainer = () => {
     const [status, redirect, setType, setClicked, setIsLoggedOut, currentUser] = useAuthSignInFirestore();
     const [showNotif, setShowNotif] = useState(true);
     const [showPost, setShowPost] = useState(false);
+    const [isEditable, setIsEditable] = useState(false);
+    const [isPostHolderActive, setIsPostHolderActive] = useState(false); 
 
+    // redirectToHome was used here instead of using the 
+    // redirect from custom hook because of a weird behaviour
+    // where it shows an error about it being not able
+    // to read the delete property inside guest function
     const [redirectToHome, setRedirectToHome] = useState(null);
 
     const logoutClickHandler = (e) => {
@@ -38,12 +44,12 @@ const DashboardContainer = () => {
     if(redirectToHome) return <Redirect to={redirectToHome} /> 
 
     if(currentUser){
-        let isGuest = currentUser.isAnonymous;
+        let guest = currentUser.isAnonymous;
         let uid = currentUser.uid;
-        let disabled = isGuest ? true : false;
+        let isGuest = guest ? true : false;
 
         return(
-            <UserContext.Provider value={disabled}>
+            <UserContext.Provider value={isGuest}>
                 <DashboardUI
                     posts = {posts}
                     logoutClickHandler = {logoutClickHandler}
@@ -52,6 +58,10 @@ const DashboardContainer = () => {
                     showPost = {showPost}
                     setShowPost = {setShowPost}
                     uid = {uid}
+                    isEditable = {isEditable}
+                    setIsEditable = {setIsEditable}
+                    isPostHolderActive ={isPostHolderActive}
+                    setIsPostHolderActive = {setIsPostHolderActive}
                 />
             </UserContext.Provider>
         )

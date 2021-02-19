@@ -20,7 +20,7 @@ const useAuthSignInFirestore = () => {
                 if(isLoggedOut){
                     await auth.currentUser.delete();
                     await auth.signOut();
-                    console.log('Guest logged out success')
+                    // console.log('Guest logged out success')
                 }else{
                     await auth.signInAnonymously();
                     setRedirect('/dashboard');
@@ -28,7 +28,7 @@ const useAuthSignInFirestore = () => {
             }else if(type === 'admin'){
                 if(isLoggedOut){
                     await auth.signOut();
-                    console.log('Admin logged out success')
+                    // console.log('Admin logged out success')
                 }else{
                     const admin = await auth.signInWithEmailAndPassword(
                         credentials.email,
@@ -37,15 +37,13 @@ const useAuthSignInFirestore = () => {
                         
                     if(admin){
                         setRedirect('/dashboard');
-                        console.log('success', admin)
-                    }else{
-                        console.log('failed', admin)
+                        // console.log('success', admin)
                     }
                 }
             }
             
         }catch (err){
-            console.log(err, 'Login Failed');
+            // console.log(err, 'Login Failed');
             setStatus('Login Failed');
         }
     }
@@ -69,10 +67,11 @@ const useAuthSignInFirestore = () => {
         auth.onAuthStateChanged(user => {
             if(isMounted){
                 if(user){
-                    console.log('Current User Data' , user);
+                    // console.log('Current User Data' , user);
                     setCurrentUser(user);
                 }else{
-                    console.log('Logged Out', user);
+                    // console.log('Logged Out', user);
+                    setStatus('Empty User.')
                 }
             }
         })

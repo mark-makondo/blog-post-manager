@@ -20,12 +20,13 @@ const AdminLoginContainer = () => {
         
         setType('admin')
         setClicked(true);
-        setCredentials(input);
+        setCredentials(input); 
         setIsLoggedOut(false);
     }
     
     const inputChangeHandler = (e) => {
         e.preventDefault();
+        
         setInput({
             ...input,
             [e.target.id]: e.target.value
