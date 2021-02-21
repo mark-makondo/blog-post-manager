@@ -1,9 +1,9 @@
 import React from 'react'
 
-const PostHolder = ({ postData, refs, postHolderClickHandler, postHolderSubmitHandler, inputOnchangeHandler }) => {
+const PostHolder = ({ index, postData, refs, postHolderClickHandler, postHolderSubmitHandler, inputOnchangeHandler }) => {
    
     return (
-        <form className="post-holder normal-2" onSubmit={e => postHolderSubmitHandler(e)} onClick={e => postHolderClickHandler(e)}>
+        <form className={`post-holder post-holder--${index} normal-2`}  onSubmit={e => postHolderSubmitHandler(e)} onClick={e => postHolderClickHandler(e)}>
             <div className="post-uid">
                 <label htmlFor="uid">UID:</label>
                 <input disabled autoComplete="off" name="uid"  type="text" onChange={e => inputOnchangeHandler(e)} value={postData.uid}/>

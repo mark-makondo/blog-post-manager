@@ -46,13 +46,16 @@ const Dashboard = (props) => {
         
                             <div className="dashboard-cont-content__info">
                                 <PostMethodContainer
+                                    isGuest = {isGuest}
                                     isPostHolderActive = {isPostHolderActive}
+                                    isEditable = {isEditable}
                                     setIsEditable = {setIsEditable}
                                 />
                                 <div className="dashboard-cont-content__info__posts">
                                     {showPost && (
-                                        posts.length > 0 ? posts.map(post => 
+                                        posts.length > 0 ? posts.map((post,i) => 
                                             <PostHolderContainer 
+                                                index = {i}
                                                 key = {post.id}
                                                 id = {post.id}
                                                 title = {post.title}
@@ -60,6 +63,7 @@ const Dashboard = (props) => {
                                                 datePosted = {new Date(post.datePosted.seconds * 1000 + post.datePosted.nanoseconds/1000000).toISOString()}
                                                 setIsPostHolderActive = {setIsPostHolderActive}
                                                 isEditable = {isEditable}
+                                                setIsEditable = {setIsEditable}
                                             />
                                         ): <p>Loading . . .</p>
                                     )}

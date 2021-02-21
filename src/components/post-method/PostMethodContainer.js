@@ -1,28 +1,47 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
-//context
-import UserContext from '../../context/UserContext.js';
+// utils
+import Query from '../../helper/Query.js';
 
 //component ui
 import PostMethodUI from './PostMethod.js';
 
-const PostMethodContainer = ({ isPostHolderActive, setIsEditable }) => {
+const PostMethodContainer = ({ isGuest, isPostHolderActive, isEditable, setIsEditable }) => {
+    const [isDisabled, setIsDisabled] = useState(true);
 
-    const editableCLickHandler = (e) =>{
+    const editableClickHandler = (e) =>{
         e.preventDefault();
-        setIsEditable(true);
+        setIsEditable(!isEditable);
     }
-    
+
+    const methodDisabled = (isDisabled) => {
+        let postEdit = Query.postMethodEdit();
+        let postDelete = Query.postMethodDelete();
+
+        postEdit.disabled = isDisabled;
+        postDelete.disabled = isDisabled;
+    }
+
+    useEffect(() => {
+        let admin = !isGuest;
+
+        if(admin){
+            if(isPostHolderActive){
+                setIsDisabled(true);
+            }else{
+                setIsDisabled(false);
+            }
+        }else if(isGuest){
+            setIsDisabled(true)
+        }
+
+        methodDisabled(isDisabled);
+    }, [isPostHolderActive])
+
     return (
-        <UserContext.Consumer>
-            { isGuest => (
-                <PostMethodUI
-                    isGuest = {isGuest}
-                    isPostHolderActive =  {isPostHolderActive}
-                    editableCLickHandler = {editableCLickHandler}
-                />
-            )}
-       </UserContext.Consumer>
+        <PostMethodUI
+            editableClickHandler = {editableClickHandler}
+        />
     )
 }
 

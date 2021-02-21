@@ -71,7 +71,7 @@ const useAuthSignInFirestore = () => {
                     setCurrentUser(user);
                 }else{
                     // console.log('Logged Out', user);
-                    setStatus('Empty User.')
+                    setStatus('')
                 }
             }
         })
