@@ -6,8 +6,18 @@ import Query from '../../helper/Query.js';
 //component ui
 import PostMethodUI from './PostMethod.js';
 
+// custom hooks
+import {useShowDataFirestore} from '../../hooks/useShowDataFirestore.js';
+
 const PostMethodContainer = ({ isGuest, isPostHolderActive, isEditable, setIsEditable }) => {
+    const [posts, setOrder] = useShowDataFirestore();
     const [isDisabled, setIsDisabled] = useState(true);
+    const [selected, setSelected] = useState('asc');
+
+    const orderOnChangeHandler = (e) => {
+        e.preventDefault();
+        setSelected(e.currentTarget.value);
+    }
 
     const editableClickHandler = (e) =>{
         e.preventDefault();
@@ -16,10 +26,8 @@ const PostMethodContainer = ({ isGuest, isPostHolderActive, isEditable, setIsEdi
 
     const methodDisabled = (isDisabled) => {
         let postEdit = Query.postMethodEdit();
-        let postDelete = Query.postMethodDelete();
 
         postEdit.disabled = isDisabled;
-        postDelete.disabled = isDisabled;
     }
 
     useEffect(() => {
@@ -38,9 +46,14 @@ const PostMethodContainer = ({ isGuest, isPostHolderActive, isEditable, setIsEdi
         methodDisabled(isDisabled);
     }, [isPostHolderActive])
 
+    useEffect(() => {
+        setOrder(selected);
+     
+    }, [selected])
     return (
         <PostMethodUI
             editableClickHandler = {editableClickHandler}
+            orderOnChangeHandler = {orderOnChangeHandler}
         />
     )
 }

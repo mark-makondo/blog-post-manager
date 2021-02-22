@@ -12,7 +12,7 @@ import {useShowDataFirestore} from '../../hooks/useShowDataFirestore.js';
 import {useAuthSignInFirestore} from '../../hooks/useAuthSignInFirestore.js';
 
 const DashboardContainer = () => {
-    const [posts] = useShowDataFirestore();
+    const [posts, setOrder] = useShowDataFirestore();
     const [status, redirect, setType, setClicked, setIsLoggedOut, currentUser] = useAuthSignInFirestore();
     const [showNotif, setShowNotif] = useState(true);
     const [showPost, setShowPost] = useState(false);

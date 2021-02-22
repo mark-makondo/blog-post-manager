@@ -8,7 +8,7 @@ const query = {
     postHolderActive: () => document.querySelector('.dashboard-cont-content__info__posts > .post-holder.active'),
     //post method
     postMethodEdit: () => document.querySelector('.post-method__edit'),
-    postMethodDelete: () => document.querySelector('.post-method__delete')
+    postMethodSelect: () => document.querySelector('.post-method select')
     
 }
 

@@ -6,8 +6,20 @@ import Query from '../../helper/Query.js';
 // component 
 import PostHolderUI from './PostHolder.js';
 
-const PostHolderContainer = ({ index, id, title, content, datePosted, setIsPostHolderActive, isEditable, setIsEditable }) => {
-  
+// custom hooks
+import {usePostMethodFirestore} from '../../hooks/usePostMethodFirestore.js';
+
+const PostHolderContainer = (props) => {
+    //#region initialize values: useState, refs, props
+    let index = props.index;
+    let id = props.id;
+    let title = props.title;
+    let content = props.content; 
+    let datePosted = props.datePosted;
+    let setIsPostHolderActive = props.setIsPostHolderActive;
+    let isEditable = props.isEditable;
+    let setIsEditable = props.setIsEditable;
+
     const refs = {
         title: createRef(),
         content: createRef(),
@@ -15,40 +27,43 @@ const PostHolderContainer = ({ index, id, title, content, datePosted, setIsPostH
     }
 
     const [clickedSubmit, setClickedSubmit] = useState(false);
+    const [clickedDelete, setclickedDelete] = useState(false);
 
     const [postData, setPostData] = useState({
         uid: id,
         title: title,
         content: content,
-        datePosted: datePosted.substr(0,10)
+        datePosted: datePosted
     });
 
-    const editableEvent = () => {
-        let activeElement = Query.postHolderActive();
-       
-        if(activeElement){
-            let title = activeElement.querySelector('.post-title input');
-            let content = activeElement.querySelector('.post-content textarea');
-            let date = activeElement.querySelector('.post-date input');
+    const [setType, setData] = usePostMethodFirestore();
+    //#endregion
 
-            if(isEditable){
-                title.disabled = false;
-                content.disabled = false;
-                date.disabled = false;
-            }else{
-                title.disabled = true;
-                content.disabled = true;
-                date.disabled = true;
-            }
-        }
-    }
-
-    const getInputData = (data) =>{
-        let uid = data.querySelector('.post-uid input').value;
-        let title = data.querySelector('.post-title input').value;
+    const disableFormInputs = (data, value) => {
+        let title = data.querySelector('.post-title input');
         let content = data.querySelector('.post-content textarea');
-        let date = data.querySelector('.post-date input');
-    }
+        let submit = data.querySelector('button');
+       
+        title.disabled = value;
+        content.disabled = value;
+        submit.disabled = value;
+    } // just a form input queries function for DRY.
+
+    const editableEvent = () => {
+        Query.postHolder().forEach(item => {
+            let activeElement = Query.postHolderActive();
+            
+            disableFormInputs(item, true);
+
+            if(activeElement){
+                if(isEditable){
+                    disableFormInputs(activeElement, false);
+                }else{
+                    disableFormInputs(activeElement, true);
+                }
+            }
+        });
+    } // if we are on active post & isEditable is true, enable form inputs otherwise disable it.
 
     const postHolderClickHandler = (e) => {
         e.preventDefault();
@@ -59,59 +74,71 @@ const PostHolderContainer = ({ index, id, title, content, datePosted, setIsPostH
         if(e.target === current){
             current.classList.toggle('active');
             noActiveClass ? setIsPostHolderActive(true) : setIsPostHolderActive(false);
-
+            
             Query.postHolder().forEach(item => {
-                let title = item.querySelector('.post-title input');
-                let content = item.querySelector('.post-content textarea');
-                let date = item.querySelector('.post-date input');
-    
-                if(item != current){
+                if(item !== current){
+
                     item.classList.remove('active');
     
                     setIsEditable(false);
-    
-                    title.disabled = true;
-                    content.disabled = true;
-                    date.disabled = true;
+                    disableFormInputs(item, true);
                 }else{
                     if(!item.classList.contains('active')){
+            
                         setIsEditable(false);
-    
-                        title.disabled = true;
-                        content.disabled = true;
-                        date.disabled = true;
-                    }
+                        disableFormInputs(item, true);
+                    } // if we are on the current and it is not active , disable edit & delete & form inputs.
                 }
-            });
-            getInputData(current);
-        }
-    }
 
-    const postHolderSubmitHandler = (e) => {
+            }); // it runs if we clicked a different post.
+        } // determines if clicked container is the parent.
+    } // set logic if we clicked the post parent container for form inputs, edit & delete.
+
+    const postHolderSubmitClickHandler = (e) => {
         e.preventDefault();
         setClickedSubmit(true);
 
         setPostData({ 
-            uid: postData.uid,
+            ...postData,
             title: refs.title.current.value,
             content: refs.content.current.value,
-            datePosted: refs.datePosted.current.value 
         })
-        console.log('casdsad')
+    } // set post data when submit is clicked.
 
-    }
+    const postHolderDeleteClickHandler = (e) => {
+        e.preventDefault();
+        setclickedDelete(true);
+        
+        setPostData({ 
+            ...postData,
+            title: refs.title.current.value,
+            content: refs.content.current.value,
+        })
+    } // set post data when delete is clicked.
 
     useEffect(() => {
         if(clickedSubmit){
+            setType('edit');
+            setData(postData);
             setClickedSubmit(false);
-        } 
+        } //if submit is clicked run usePostMethodFirestore custom hook.
 
-    }, [postData])
+        if(clickedDelete){
+            setType('delete');
+            setData(postData);
+            setclickedDelete(false);
+        } //if delete is clicked run usePostMethodFirestore custom hook.
+
+    }, [postData]) // this only runs if postData changes.
 
     useEffect(() => {
+        //set input values whenever post data changes.
+        refs.title.current.value = postData.title;
+        refs.content.current.value = postData.content;
+
         editableEvent();
 
-    }, [isEditable])
+    }, [isEditable]) // this runs everytime isEditable is set.
 
     return (
         <PostHolderUI
@@ -119,7 +146,8 @@ const PostHolderContainer = ({ index, id, title, content, datePosted, setIsPostH
             postData = {postData}
             refs = {refs}
             postHolderClickHandler= {postHolderClickHandler}
-            postHolderSubmitHandler = {postHolderSubmitHandler}
+            postHolderSubmitClickHandler = {postHolderSubmitClickHandler}
+            postHolderDeleteClickHandler = {postHolderDeleteClickHandler}
         />
     )
 }

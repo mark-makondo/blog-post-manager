@@ -60,12 +60,12 @@ const Dashboard = (props) => {
                                                 id = {post.id}
                                                 title = {post.title}
                                                 content = {post.content}
-                                                datePosted = {new Date(post.datePosted.seconds * 1000 + post.datePosted.nanoseconds/1000000).toISOString()}
+                                                datePosted = {new Date(post.datePosted.seconds * 1000 + post.datePosted.nanoseconds/1000000).toLocaleDateString()}
                                                 setIsPostHolderActive = {setIsPostHolderActive}
                                                 isEditable = {isEditable}
                                                 setIsEditable = {setIsEditable}
                                             />
-                                        ): <p>Loading . . .</p>
+                                        ): (!posts.length > 0 ?<p>No Posts.</p> : <p>Loading . . .</p>)
                                     )}
                                 </div>
                             </div>
@@ -75,6 +75,7 @@ const Dashboard = (props) => {
                         <ModalNotificationContainer
                         isActive = {showNotif}
                         setIsActive = {setShowNotif}
+                        setIsEditable = {setIsEditable}
                         />
                     )}
                    

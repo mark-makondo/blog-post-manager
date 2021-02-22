@@ -7,7 +7,7 @@ import ModalNotificationUI from './ModalNotification.js';
 import Query from '../../helper/Query.js';
 
 
-const ModalNotificationContainer = ({ isActive, setIsActive }) => {
+const ModalNotificationContainer = ({ isActive, setIsActive, setIsEditable }) => {
 
     const isModalActive = (target) => {
         let modalEmail =  Query.modalNotification();
@@ -22,6 +22,7 @@ const ModalNotificationContainer = ({ isActive, setIsActive }) => {
             modalEmail.addEventListener('click', (e) => {
                 if(e.target === modalEmail){
                     setIsActive(false);
+                    setIsEditable(false);
                 }
             })
         }

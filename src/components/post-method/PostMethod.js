@@ -1,15 +1,14 @@
 import React from 'react'
 
-const PostMethod = ({ editableClickHandler }) => {
+const PostMethod = ({ editableClickHandler,orderOnChangeHandler }) => {
 
     return (
         <div className="post-method">
-            <select className="normal-1" name="order" id="order">
+            <select className="normal-1" name="order" id="order" onChange={e => orderOnChangeHandler(e)}>
                 <option value="asc">ASC</option>
                 <option value="desc">DESC</option>
             </select>
             <button className="post-method__edit normal-1" onClick={e => editableClickHandler(e)}>edit</button>
-            <button className="post-method__delete normal-1">delete</button>
         </div>
     )
 }

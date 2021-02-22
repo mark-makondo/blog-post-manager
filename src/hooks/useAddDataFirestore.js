@@ -11,7 +11,6 @@ const useAddDataFirestore = () => {
         try{
             await database.collection('posts').add({
                 ...newPost,
-                authorId: 1234,
                 datePosted: new Date()
             })
             alert('New Post Added Succesfully');
