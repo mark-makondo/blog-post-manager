@@ -14,6 +14,7 @@ const ProfileContainer = ({setShowPost, showPost}) => {
     const showPostClickHandler = (e) => {
         e.preventDefault();
         setShowPost(!showPost);
+        e.currentTarget.classList.toggle('active');
     }
     return (
         <ProfileUI

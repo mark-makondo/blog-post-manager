@@ -15,11 +15,14 @@ const usePostMethodFirestore = () => {
                     content: postData.content,
                     datePosted: new Date(postData.datePosted)
                 });
+                alert('Content Edited Successfully')
             }else if(type === 'delete'){
                 await database.collection('posts').doc(postData.uid).delete();
+                alert('Content Deleted Successfully')
             }
             
         }catch (err){
+            alert(`Method Failed: ${err}`);
         }
     }
 

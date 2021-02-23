@@ -42,11 +42,13 @@ const PostHolderContainer = (props) => {
     const disableFormInputs = (data, value) => {
         let title = data.querySelector('.post-title input');
         let content = data.querySelector('.post-content textarea');
-        let submit = data.querySelector('button');
+        let postSubmit = data.querySelector('.post-submit');
+        let postDelete = data.querySelector('.post-delete');
        
         title.disabled = value;
         content.disabled = value;
-        submit.disabled = value;
+        postSubmit.disabled = value;
+        postDelete.disabled = value;
     } // just a form input queries function for DRY.
 
     const editableEvent = () => {

@@ -29,6 +29,15 @@
         color: getColors(primary);
         max-width: getMaxWidth(s);
         margin: 0 auto;
+        cursor: pointer;
+        font-weight: 600;
+        span{
+            @media(hover:hover){
+                &:hover{
+                    color: getColors(active-light);
+                }
+            }
+        }
     }
     &-cont{
         position: relative;

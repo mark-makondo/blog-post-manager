@@ -5,12 +5,10 @@ import {database} from '../config/firebase-config.js';
 
 const useShowDataFirestore = () => {
     const [posts, setPosts] = useState([]);
-    const [order, setOrder] = useState('asc');
 
-    const postsCollection = (target) => {
-        console.log(target)
+    const postsCollection = () => {
         database.collection('posts')
-            .orderBy('datePosted', target)
+            .orderBy('datePosted', 'desc')
             .onSnapshot((snap) => {
                 let documents = [];
 
@@ -23,13 +21,11 @@ const useShowDataFirestore = () => {
     }
     
     useEffect(() => {
-        if(order){
-            postsCollection(order);
-        }
+        postsCollection();
+       
+    }, [])
 
-    }, [order])
-
-    return [posts, setOrder];
+    return [posts];
 }
 
 export {useShowDataFirestore};
