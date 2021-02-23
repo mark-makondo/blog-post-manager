@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/blog-post-manager/static/css/main.fed85956.chunk.css",
+    "main.js": "/blog-post-manager/static/js/main.00bb1848.chunk.js",
+    "main.js.map": "/blog-post-manager/static/js/main.00bb1848.chunk.js.map",
+    "runtime-main.js": "/blog-post-manager/static/js/runtime-main.d363026c.js",
+    "runtime-main.js.map": "/blog-post-manager/static/js/runtime-main.d363026c.js.map",
+    "static/js/2.908226b6.chunk.js": "/blog-post-manager/static/js/2.908226b6.chunk.js",
+    "static/js/2.908226b6.chunk.js.map": "/blog-post-manager/static/js/2.908226b6.chunk.js.map",
+    "index.html": "/blog-post-manager/index.html",
+    "static/css/main.fed85956.chunk.css.map": "/blog-post-manager/static/css/main.fed85956.chunk.css.map",
+    "static/js/2.908226b6.chunk.js.LICENSE.txt": "/blog-post-manager/static/js/2.908226b6.chunk.js.LICENSE.txt",
+    "static/media/dev-pic.98d4c621.jpg": "/blog-post-manager/static/media/dev-pic.98d4c621.jpg",
+    "static/media/hero-image.1762cf3a.png": "/blog-post-manager/static/media/hero-image.1762cf3a.png",
+    "static/media/logo.7bfe9f2c.svg": "/blog-post-manager/static/media/logo.7bfe9f2c.svg",
+    "static/media/stylesheet.css": "/blog-post-manager/static/media/norwester-webfont.b0f6019a.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d363026c.js",
+    "static/js/2.908226b6.chunk.js",
+    "static/css/main.fed85956.chunk.css",
+    "static/js/main.00bb1848.chunk.js"
+  ]
+}
