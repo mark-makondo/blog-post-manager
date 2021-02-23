@@ -21,7 +21,7 @@ function App() {
           <Route exact path='/' component={LoginPageContainer}/>
           <Route path='/admin-login' component={AdminLoginContainer}/>
           <Route path='/dashboard' component={DashboardContainer}/>
-          <Route component={ErrorPage}/>
+          {/* <Route component={ErrorPage}/> */}
         </Switch>
       </div>
     </Router>
